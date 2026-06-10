@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/scanFragment">
+
+    <fragment
+        android:id="@+id/scanFragment"
+        android:name="com.example.contractscanner.ui.scan.ScanFragment"
+        android:label="扫描"
+        tools:layout="@layout/fragment_scan" >
+        <action
+            android:id="@+id/action_scanFragment_to_confirmFragment"
+            app:destination="@id/confirmFragment"
+            app:popUpTo="@id/scanFragment"
+            app:popUpToInclusive="false" />
+        <argument
+            android:name="batchGroup"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/confirmFragment"
+        android:name="com.example.contractscanner.ui.confirm.ConfirmFragment"
+        android:label="确认"
+        tools:layout="@layout/fragment_confirm" >
+        <argument
+            android:name="sellerName"
+            app:argType="string" />
+        <argument
+            android:name="orderId"
+            app:argType="string" />
+        <argument
+            android:name="signDate"
+            app:argType="string" />
+        <argument
+            android:name="contractType"
+            app:argType="string"
+            android:defaultValue="" />
+        <argument
+            android:name="changeTerms"
+            app:argType="string"
+            android:defaultValue="" />
+        <argument
+            android:name="batchGroup"
+            app:argType="string"
+            android:defaultValue="" />
+        <action
+            android:id="@+id/action_confirmFragment_to_listFragment"
+            app:destination="@id/listFragment"
+            app:popUpTo="@id/scanFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.example.contractscanner.ui.list.ListFragment"
+        android:label="列表"
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment_to_scanFragment"
+            app:destination="@id/scanFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_exportFragment"
+            app:destination="@id/exportFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/exportFragment"
+        android:name="com.example.contractscanner.ui.export.ExportFragment"
+        android:label="导出"
+        tools:layout="@layout/fragment_export" >
+        <argument
+            android:name="batchGroup"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+
+</navigation>
